@@ -8,3 +8,10 @@ class Question(models.Model):
     option2=models.CharField(max_length=300)
     option3=models.CharField(max_length=300)
     option4=models.CharField(max_length=300)
+
+class Participant(models.Model):
+    teamid=models.CharField(max_length=20)
+    name1=models.CharField(max_length=60)
+    name2=models.CharField(max_length=50)
+    score=models.IntegerField()
+   
