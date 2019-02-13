@@ -17,11 +17,9 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 from quiz.views import QuestionView
-
-router = routers.DefaultRouter()
-router.register(r'questions',QuestionView,'questions')
+from quiz.views import ParticipantView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/',include(router.urls)),
+    url(r'^api/',include('quiz.urls')),
 ]

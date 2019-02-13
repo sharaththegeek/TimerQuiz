@@ -9,15 +9,15 @@ class QuestionSerializer(serializers.ModelSerializer):
         fields=('id','question','option1','option2','option3','option4')
 
 class ParticipantSerializer(serializers.ModelSerializer):
-    teamid=serializers.CharField(required=True,validators=[UniqueValidator(queryset=Participant.objects.all())])
-    name1=serializers.CharField(max_length=60)
-    name2=serializers.CharField(max_length=50)
-
-    def create(self,validated_data):
-        participant=Participant(teamid=validated_data['teamid'],name1=name1,name2=name2,score=0)
-        participant.save()
-        return participant
-
     class Meta:
         model=Participant
         fields=('teamid','name1','name2','score')
+    
+    def create(self,validated_data):
+        return Participant.objects.create(**validated_data)
+
+    def update(self,instance,validated_data):
+        instance.teamid=validated_data.get('teamid',instance.teamid)
+        instance.score=validated_data.get('score',instance.score)
+        instance.save()
+        return instance
