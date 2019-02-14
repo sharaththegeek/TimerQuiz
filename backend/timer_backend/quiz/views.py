@@ -19,7 +19,7 @@ class QuestionView(APIView):
 
 class ParticipantView(APIView):
     def get(self,request):
-        participant=Participant.objects.all()
+        participant=Participant.objects.all().order_by('-score')
         serializer=ParticipantSerializer(participant,many=True)
         return Response({"participant":serializer.data})
     
