@@ -31,7 +31,7 @@ class Leaderboard extends Component{
         }
     }
     componentDidMount(){
-        axios.get('/api/participant')
+        axios.get('/api/participant/')
         .then(res=>{
             this.setState({leaders:res.data.participant});
         })

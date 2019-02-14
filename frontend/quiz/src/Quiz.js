@@ -35,19 +35,19 @@ const questions=[
     },
     {
      id:2,
-     question:"Who is your girlfriend",
-     option1:"Yash",
-     option2:"Yashu",
-     option3:"Yashwanthi",
-     option4:"M Yashwanthi Sharath",
+     question:"What's up?",
+     option1:"What's up?",
+     option2:"What's up?",
+     option3:"What's up?",
+     option4:"What's up? What's up?",
     },
     {
         id:3,
-        question:"What is your girlfriend's boyfriend's name?",
-        option1:"Sharath",
-        option2:"Sharath Sriram",
-        option3:"Baby",
-        option4:"Darling",
+        question:"What's up?",
+        option1:"What's up?",
+        option2:"What's up? ",
+        option3:"What's up?",
+        option4:"What's up?",
     },
 ]
 class Quiz extends Component{
@@ -75,19 +75,19 @@ class Quiz extends Component{
                     },
                     {
                      id:2,
-                     question:"Who is your girlfriend",
-                     option1:"Yash",
-                     option2:"Yashu",
-                     option3:"Yashwanthi",
-                     option4:"M Yashwanthi Sharath",
+                     question:"What's up?",
+                     option1:"What's up?",
+                     option2:"What's up?",
+                     option3:"What's up?",
+                     option4:"What's up?",
                     },
                     {
                         id:3,
-                        question:"What is your girlfriend's boyfriend's name?",
-                        option1:"Sharath",
-                        option2:"Sharath Sriram",
-                        option3:"Baby",
-                        option4:"Darling",
+                        question:"What's up??",
+                        option1:"What's up?",
+                        option2:"What's up? What's up?",
+                        option3:"What's up?",
+                        option4:"What's up?",
                     },
             ],
         }
@@ -121,7 +121,7 @@ class Quiz extends Component{
     }
     componentDidMount(){ 
         this.interval=setInterval(()=>this.tick(),1000);
-        axios.get("/api/questions")
+        axios.get("/api/questions/")
         .then(res => {
            var quizquestions=res.data.questions;
            for (var key in quizquestions){
