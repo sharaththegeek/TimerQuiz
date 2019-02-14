@@ -1,0 +1,32 @@
+@media only screen and (min-width:768px){
+    .pos{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin:auto;
+        width: 50%;
+      }
+    .textA{
+        text-align:center;
+      }
+    .textBox{
+        width:80%;
+      }
+    }
+
+@media only screen and (max-width:768px){
+    .pos{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width:90%;
+        margin: auto;
+      }
+      .textA{
+        text-align:center;
+        width: 100%;
+      }
+      .textBox{
+        width:100%;
+      }
+}
