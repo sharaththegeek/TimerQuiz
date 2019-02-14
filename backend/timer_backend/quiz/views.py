@@ -7,6 +7,7 @@ from .serializers import QuestionSerializer
 from .serializers import ParticipantSerializer
 from .models import Participant
 from .models import Question
+import json
 from rest_framework import generics
 # Create your views here.
 
@@ -29,3 +30,30 @@ class ParticipantView(APIView):
         if serializer.is_valid(raise_exception=True):
             register_saved=serializer.save()
         return Response({"success":"Created Successfully"})
+
+class ScoreView(APIView):
+    def post(self,request):
+        score=0
+        tid=" "
+        submissions=request.data.get('selectedAns')
+        for jval in submissions:
+            quest=Question.objects.get(id=jval['id'])
+            tid=jval['teamid']
+            if quest.correctAns==jval['selected']:
+                score=score+1
+        saved_user=Participant.objects.get(teamid=tid)
+        saved_user.score=score
+        saved_user.save()
+        return Response({"score":score})
+        
+class OneParticipant(generics.ListAPIView):
+    def get_object(self,tid):
+        try:
+            return Participant.objects.get(teamid=tid)
+        except Participant.DoesNotExist:
+            raise Http404
+    
+    def get(self,request,tid,format=None):
+        part=self.get_object(tid)
+        serializer=ParticipantSerializer(part)
+        return Response({"yourscore":serializer.data})
